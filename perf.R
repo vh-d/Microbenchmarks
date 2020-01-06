@@ -89,15 +89,11 @@ assert(!is.unsorted(sortperf(5000)))
 timeit('recursion_quicksort', sortperf, 5000)
 
 ## mandel ##
-Mod2 = function(z) {
-     return(Re(z)^2 + Im(z)^2)
-}
-
 mandel = function(z) {
     c = z
     maxiter = 80
     for (n in 1:maxiter) {
-        if (Mod2(z) > 4) return(n-1)
+        if (Re(z)^2 + Im(z)^2 > 4) return(n-1)
         z = z^2+c
     }
     return(maxiter)
