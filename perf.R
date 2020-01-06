@@ -90,7 +90,7 @@ timeit('recursion_quicksort', sortperf, 5000)
 
 ## mandel ##
 Mod2 = function(z) {
-     return(Re(z)*Re(z) + Im(z)*Im(z))
+     return(Re(z)^2 + Im(z)^2)
 }
 
 mandel = function(z) {
