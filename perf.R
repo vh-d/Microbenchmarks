@@ -42,11 +42,12 @@ parseintperf = function(t) {
 timeit("parse_integers", parseintperf, 1000)
 
 printfdperf = function(t) {
-    fd<-file("/dev/null")
+    fd <- file("/dev/null", "w")
     for (i in 1:t) {
         s = sprintf("%d %d", i, i+1)
-	writeLines(s, fd)
+        writeLines(s, fd) # .Internal(writeLines(s, fd, "\n", FALSE)) would be even faster (1.3x speedup)
     }
+    close(fd)
 }
 
 timeit("print_to_file", printfdperf, 100000)
