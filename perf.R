@@ -89,16 +89,6 @@ assert(!is.unsorted(sortperf(5000)))
 timeit('recursion_quicksort', sortperf, 5000)
 
 ## mandel ##
-mandel = function(z) {
-    c = z
-    maxiter = 80
-    for (n in 1:maxiter) {
-        if (Re(z)^2 + Im(z)^2 > 4) return(n-1)
-        z = z^2+c
-    }
-    return(maxiter)
-}
-
 mandelperf = function() {
     re = seq(-2,0.5,.1)
     im = seq(-1,1,.1)
@@ -106,7 +96,14 @@ mandelperf = function() {
     count = 1
     for (r in re) {
         for (i in im) {
-            M[count] = mandel(complex(real=r,imag=i))
+            z = complex(real=r,imag=i)
+            c = z
+            maxiter = 80
+            M[count] = 80
+            for (n in 1:maxiter) {
+                if (Re(z)^2 + Im(z)^2 > 4) {M[count] <- n-1;break}
+                z = z^2+c
+            }
             count = count + 1
         }
     }
